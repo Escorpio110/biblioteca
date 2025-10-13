@@ -18,9 +18,19 @@
          * 
          * @return ViewResponse
          */
-        public function list(){
+        public function list(int $page = 1){
+            $limit = RESULTS_PER_PAGE;
+            $total = Libro::total();
             $libros = Libro::all();
-            return view('libro/list', ['libros'=>$libros]);
+
+            $paginator = new Paginator('/Libro/list', $page, $limit, $total);
+
+            $libros = V_libro::orderBy('titulo', 'ASC', $limit, $paginator->getOffset());
+
+
+            
+            
+            return view('libro/list', ['libros'=>$libros, 'paginator'=>$paginator]);
         }
         
         /**
@@ -31,11 +41,10 @@
             
             $libro = Libro::findOrFail($id, 'No s\'ha trobat el llibre indicat.');
 
-            $ejemplares = $libro->hasMayny('Ejemplar');
+            $ejemplares = $libro->hasMany('Ejemplar');
+           
 
-            
-
-            return view('libro/show', ['libro'=>$libro]);
+            return view('libro/show', ['libro'=>$libro, 'ejemplares'=>$ejemplares]);
         }
         
         /**
@@ -97,7 +106,9 @@
             
             $libro = Libro::findOrFail($id, 'No s\'ha trobat el llibre indicat.');
 
-            return view('libro/edit', ['libro'=>$libro]);
+            $ejemplares = $libro->hasMany('Ejemplar');
+
+            return view('libro/edit', ['libro'=>$libro, 'ejemplares'=>$ejemplares]);
         }   
 
         public function update(){
@@ -173,4 +184,6 @@
                 return redirect("/Libro/delete/$id");
             }
         }
+
+        
     }

@@ -22,7 +22,7 @@
 		<?= $template->messages() ?>
 		<?= $template->acceptCookies() ?>
         <?= $template->breadcrumbs([
-            'Libros' => null
+            'Nuevo libro' => null
         ]) ?>
         <?= $template->messages() ?>
         <main>

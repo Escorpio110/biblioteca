@@ -99,7 +99,7 @@ define('SMTP', 'localhost');
 define('SMTP_PORT', '25');
 
 // Email y nombre del administrador.
-define('ADMIN_EMAIL', 'admin@fastlight-test.org');
+define('ADMIN_EMAIL', 'yecovo4513@aupvs.com');
 define('ADMIN_EMAIL_NAME', 'App admin');
 
 // Email y nombre para el remitente de envíos genéricos

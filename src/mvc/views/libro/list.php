@@ -42,8 +42,8 @@
                         <td><a href='/Libro/show/<?= $libro->id ?>'><?= $libro->titulo ?></a></td>
                         <td><?= $libro->autor ?></td>
                         <td class="centrado">
-                            <a href='/Libro/show/<?= $libro->id ?>'>Ver</a>
-                            <a href='/Libro/edit/<?= $libro->id ?>'>Editar</a>
+                            <a href='/Libro/show/<?= $libro->id ?>'>Ver</a> -
+                            <a href='/Libro/edit/<?= $libro->id ?>'>Editar</a> -         
                             <a href='/Libro/delete/<?= $libro->id ?>'>Borrar</a> 
                         </td>
                     </tr>

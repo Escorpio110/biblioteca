@@ -22,7 +22,7 @@
 		<?= $template->messages() ?>
 		<?= $template->acceptCookies() ?>
         <?= $template->breadcrumbs([
-            'Libros' => null
+            'Editar libro' => null
         ]) ?>
         <?= $template->messages() ?>
         <main>
@@ -70,12 +70,49 @@
                     <input class="button" type="reset" name="reset" value="Reset">
                 </div>
             </form>
+            <section>
+                <script>
+                    function confirmar(id) {
+                        if (confirm('Seguro que quieres eliminar?')) {
+                            location.href= '/Ejemplar/destroy'+id
+                        }
+                    }
+                </script>
+                <h2>Ejemplares <?= $libro->titulo ?></h2>
+                <a class="button" href="/ejemplar/create/<?= $libro->id ?>">Nuevo Ejemplar</a>
+                <?php 
+                    if(!$ejemplares){
+                        echo "<div class='warning p2'><p>No hay ejemplares</p></div>";
+                    }else{
+                ?>
+                    
+                    <table class="table w100 centred-block">
+                        <tr>
+                            <th>ID</th><th>Año</th><th>Precio</th><th>Estado</th><th>Operaciones</th>
+                        </tr>
+                        <?php foreach($ejemplares as $ejemplar){ ?>
+                            <tr>
+                                <td><?= $ejemplar->id ?></td>
+                                <td><?= $ejemplar->anyo?></td>
+                                <td><?= $ejemplar->precio?> €</td>
+                                <td><?= $ejemplar->estado?></td>
+                                <td class="centred">
+                                    <?php if(!$ejemplar->hasAny('Prestamo')) { ?>
+                                        <a onclick="confirmar(<?= $ejemplar->id ?>)">Borrar</a>
+                                    <?php }?>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </table>         
+                <?php } ?>
+            </section>
             
             <div class="centrado">
                 <a class="button" onclick="history.back()">Atras</a>
                 <a class="button" href="/Libro/list">Lista de libros</a>
                 <a class="button" href="/Libro/show/<?= $libro->id ?>">Detalles</a>
                 <a class="button" href="/Libro/delete/<?= $libro->id ?>">Borrar</a>
+                
             </div>
         </main>
         <?= $template->footer() ?>

@@ -213,6 +213,8 @@ class Base implements TemplateInterface{
         $html .= "\t\t<li><a href='/Libro'>Libros</a></li>\n";
 
         $html .= "\t\t<li><a href='/Libro/create'>Nuevo libro</a></li>\n";
+
+        $html .= "\t\t<li><a href='/Contacto'>Contacto</a></li>\n";
         // Enlace a los ejemplos de maquetación.
         // Lo eliminaremos en producción junto con la carpeta mvc/views/examples y el ExampleController
         $html .= "\t\t<li><a target='_blank' href='https://fastlight.org'>Documentación</a></li>\n";

@@ -22,7 +22,8 @@
 		<?= $template->messages() ?>
 		<?= $template->acceptCookies() ?>
         <?= $template->breadcrumbs([
-            'Libros' => null
+            'Libros' => '/Libro/list',
+            $libro->titulo => NULL
         ]) ?>
         <?= $template->messages() ?>
         <main>
@@ -34,6 +35,7 @@
                 <p><b>Idioma</b>        <?= $libro->idioma?></p>
                 <p><b>Editorial:</b>    <?= $libro->editorial?></p>
                 <p><b>Edición:</b>      <?= $libro->edicion?></p>
+                
 
                 <p><b>Edad recomendada:</b>
                 <?= $libro->edadrecomendada ?? 'TP' ?></p>
@@ -47,6 +49,28 @@
                 <p><?= $libro->sinopsis ? paragraph($libro->sinopsis) : 'SIN DETALLES' ?></p>
             </section>
             
+            <section>
+                <h2>Ejemplares <?= $libro->titulo ?></h2>
+                <?php 
+                    if(!$ejemplares){
+                        echo "<div class='warning p2'><p>No hay ejemplares</p></div>";
+                    }else{
+                ?>
+                    <table class="table w100 centred-block">
+                        <tr>
+                            <th>ID</th><th>Año</th><th>Precio</th><th>Estado</th>
+                        </tr>
+                        <?php foreach($ejemplares as $ejemplar){ ?>
+                            <tr>
+                                <td><?= $ejemplar->id ?></td>
+                                <td><?= $ejemplar->anyo?></td>
+                                <td><?= $ejemplar->precio?> €</td>
+                                <td><?= $ejemplar->estado?></td>
+                            </tr>
+                        <?php } ?>
+                    </table>         
+                <?php } ?>
+            </section>
             <div class="centrado">
                 <a class="button" onclick="history.back()">Atras</a>
                 <a class="button" href="/Libro/list">Lista de libros</a>

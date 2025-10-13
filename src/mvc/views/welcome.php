@@ -33,25 +33,31 @@
             		<h2>¿Qué es esta biblioteca?</h2>
             		
             		<p>
-            			<a href="https://github.com/robertsallent/fastlight"></a>
-            			es un <b>framework PHP</b> rápido y ligero para de sarrollar 
-            			<b>aplicaciones web</b> y <b>APIs RESTFUL</b>.
+            			Es un lugar de tranquilidad y aprendizaje.
             		</p>
             		
-            		<p>Está <b>pensado para docencia</b>, con lo que incorpora las 
-        		   	 características  esenciales para desarrollo de una aplicación web rápida, sólida y fiable, pero no
-        			  incluye algunas funcionalidades complejas que desarrollamos en clase (pero que encontraréis en la documentación). </p>
+            		<p>Es una biblioteca que se vasa en en estilo medieval </p>
         			      		       
-        		    <p>Su modo de empleo está inspirado en <code>Laravel</code> (aunque sus ancestros
-        		       se inspiraban en <code>CodeIgniter</code>), lo que deriva en una transición muy sencilla
-        		       desde <code>FastLight</code> hacia <code>Laravel</code>, <code>Symfony</code> u otros <i>frameworks</i> 
-        		       MVC sobre <code>PHP</code>.</p>	 
-        		       
-        		    <p>La documentación oficial y los manuales están disponibles en 
+        		    <p>
+						Aqui puedes encontrar todo tipo de libros, desde los mas antiguoss hata los mas moderno
+						
+					</p>	 
+					<div class="flex-container"> 
+						<div class="flex2">
+
+						<img src="/images/template/lib.png">
+
+						</div>
+						<div class="flex2">
+							
+							<img src="/images/template/lib2.png" >
+
+						</div>
+					</div>
     		    </div>   
     		    
     		    <figure class="flex1 medium centered centered-block">
-    		    	<img class="square fit" src="/images/template/phpmysql.png" alt="FastLight recomienda PHP8.2 y MySQL8">
+    		    	<img class="square fit" src="/images/template/biblio.png" alt="FastLight recomienda PHP8.2 y MySQL8">
     		    </figure>
 		    </section>
 		               
