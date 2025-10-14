@@ -212,7 +212,16 @@ class Base implements TemplateInterface{
 
         $html .= "\t\t<li><a href='/Libro'>Libros</a></li>\n";
 
+        $html .= "\t\t<li><a href='/Tema/list'>Tema</a></li>\n";
+
         $html .= "\t\t<li><a href='/Libro/create'>Nuevo libro</a></li>\n";
+        
+        $html .= "\t\t<li><a href='/Paneldelbiblotecario'>panel</a></li>\n";
+
+        $html .= "\t\t<li><a href='../Ejemplar/prestamo'>Prestamos</a></li>\n";
+        
+        $html .= "\t\t<li><a href='/Socio'>Lista usuarios</a></li>\n";
+
 
         $html .= "\t\t<li><a href='/Contacto'>Contacto</a></li>\n";
         // Enlace a los ejemplos de maquetación.
