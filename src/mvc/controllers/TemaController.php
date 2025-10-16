@@ -19,30 +19,31 @@
          * @return ViewResponse
          */
         public function list(int $page = 1){
-            /**$limit = RESULTS_PER_PAGE;
-            $total = Socio::total();**/
-            $temas = Tema::all();
+            $limit = RESULTS_PER_PAGE;
+            $total = Tema::total();
+            #$temas = Tema::all();
 
-            /**$paginator = new Paginator('/Socio/list', $page, $limit, $total);
+            $paginator = new Paginator('/Tema/list', $page, $limit, $total);
 
-            $libros = V_libro::orderBy('titulo', 'ASC', $limit, $paginator->getOffset());**/
+            $temas = Tema::orderBy('Tema', 'ASC', $limit, $paginator->getOffset());
 
 
             
             
-            return view('tema/list', ['temas'=>$temas/**,'paginator'=>$paginator**/]);
+            return view('tema/list', ['temas'=>$temas,'paginator'=>$paginator]);
         }
+
         /**
          * @param int $id
          * @return ViewResponse
          */
-        public function show(int $dni = 0){
+        public function show(int $id = 0){
             
-            $socio = Socio::findOrFail($dni, 'No s\'ha trobat el llibre indicat.');
+            $tema = Tema::findOrFail($id, 'No s\'ha trobat el llibre indicat.');
 
-            
+            $libros = $tema->belongsToMany('Libro', 'temas_libros');
            
 
-            return view('socio/show', ['socio'=>$socio]);
+            return view('tema/show', ['tema'=>$tema, 'libros'=>$libros]);
         }
     }

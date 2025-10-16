@@ -166,7 +166,7 @@ class Base implements TemplateInterface{
                 <div class='flex-container gap1'>
                     <figure class='flex1 perfect-centered'>
                         <a href='/'>
-                            <img alt='FastLight Logo' src='/images/logos/fastlight.png'>
+                            <img alt='FastLight Logo' src='/images/logos/log.png'>
                         </a>
                     </figure>
                     <hgroup class='flex7'>
@@ -211,18 +211,9 @@ class Base implements TemplateInterface{
         $html .= "\t\t<li><a href='/'>Inicio</a></li>\n";
 
         $html .= "\t\t<li><a href='/Libro'>Libros</a></li>\n";
-
-        $html .= "\t\t<li><a href='/Tema/list'>Tema</a></li>\n";
-
-        $html .= "\t\t<li><a href='/Libro/create'>Nuevo libro</a></li>\n";
         
-        $html .= "\t\t<li><a href='/Paneldelbiblotecario'>panel</a></li>\n";
-
-        $html .= "\t\t<li><a href='../Ejemplar/prestamo'>Prestamos</a></li>\n";
+        $html .= "\t\t<li><a href='/Panel/paneldelbibliotecario'>Panel del Bibliotecario</a></li>\n";
         
-        $html .= "\t\t<li><a href='/Socio'>Lista usuarios</a></li>\n";
-
-
         $html .= "\t\t<li><a href='/Contacto'>Contacto</a></li>\n";
         // Enlace a los ejemplos de maquetación.
         // Lo eliminaremos en producción junto con la carpeta mvc/views/examples y el ExampleController

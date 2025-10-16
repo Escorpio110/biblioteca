@@ -26,8 +26,15 @@ class PanelController extends Controller{
         // carga la vista del panel del administrador
         return view('panel/admin');
     }
-    
-    
+    public function index(){
+        return $this->paneldelbibliotecario();
+    }
+    public function paneldelbibliotecario(){
+        
+        
+        
+        return view('panel/paneldelbibliotecario');
+    }
 }
 
 

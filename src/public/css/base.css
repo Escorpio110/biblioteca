@@ -1093,7 +1093,7 @@ body{
 
 /* header principal (directamente dentro del body)---------------------------- */
 #main-header{
-	background-image: url(../images/template/header.jpg);
+	background-image: url(../images/template/fon.jpg);
 	background-size: cover;
 	align-items: center;
 	color: white;

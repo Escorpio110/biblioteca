@@ -22,21 +22,49 @@
 		<?= $template->messages() ?>
 		<?= $template->acceptCookies() ?>
         <?= $template->breadcrumbs([
-            'Socios' => '/Socio/list',
-            $libro->titulo => NULL
+            'Temas' => '/Tema/list',
+            $tema->tema => NULL
         ]) ?>
         <?= $template->messages() ?>
         <main>
-            <h1><?= APP_NAME ?></h1>
+
+
+
+
+
+
+
+
+
+
             <section>
-                <p><b>DNI:</b>          <?= $socio->dni?></p>
-                <p><b>Nombre:</b>       <?= $libro->nombre?></p>
-                <p><b>Poblacion:</b>    <?= $libro->poblacion?></p>
-                <p><b>Telefono</b>      <?= $libro->telefono?></p>
-                <p><b>Email:</b>        <?= $libro->email?></p>
-                
+                <?php 
+                    if(!$libros){
+                        echo "<div class='warning p2'><p>No hay ejemplares</p></div>";
+                    }else{
+                ?>
+                    <table class="table w100 centred-block">
+                        <tr>
+                            <th>ID</th><th>Tema</th>
+                        </tr>
+                        <?php foreach($libros as $libro){ ?>
+                            <tr>
+                                <td><?= $libro->id ?></td>
+                                <td><a href='/Libro/show/<?= $libro->id ?>'><?= $libro->titulo ?></a></td>
+                            </tr>
+                        <?php } ?>
+                    </table>         
+                <?php } ?>
             </section>
             
+
+
+
+
+
+
+
+
             
         </main>
         <?= $template->footer() ?>

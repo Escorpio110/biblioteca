@@ -21,16 +21,18 @@
         public function list(int $page = 1){
             $limit = RESULTS_PER_PAGE;
             $total = Libro::total();
-            $libros = Libro::all();
+            #$libros = Libro::all();
+
+            //$filtro = Filter::apply('libros');
 
             $paginator = new Paginator('/Libro/list', $page, $limit, $total);
 
             $libros = V_libro::orderBy('titulo', 'ASC', $limit, $paginator->getOffset());
 
-
+            $ejemplares = Ejemplar::all();
             
             
-            return view('libro/list', ['libros'=>$libros, 'paginator'=>$paginator]);
+            return view('libro/list', ['libros'=>$libros, 'ejemplares'=>$ejemplares, 'paginator'=>$paginator]);
         }
         
         /**
@@ -42,9 +44,10 @@
             $libro = Libro::findOrFail($id, 'No s\'ha trobat el llibre indicat.');
 
             $ejemplares = $libro->hasMany('Ejemplar');
-           
+            
+            $temas = $libro->belongsToMany('Tema', 'temas_libros');
 
-            return view('libro/show', ['libro'=>$libro, 'ejemplares'=>$ejemplares]);
+            return view('libro/show', ['libro'=>$libro, 'ejemplares'=>$ejemplares, 'temas'=>$temas]);
         }
         
         /**
@@ -53,7 +56,8 @@
          * @return ViewResponse
          */
         public function create(){
-            return view('libro/create');
+
+            return view('libro/create', ['listaTemas'=> Tema::orderBy('tema')]);
         }
 
         public function store(){
@@ -108,7 +112,7 @@
 
             $ejemplares = $libro->hasMany('Ejemplar');
 
-            return view('libro/edit', ['libro'=>$libro, 'ejemplares'=>$ejemplares]);
+            return view('libro/edit', ['libro'=>$libro, 'ejemplares'=>$ejemplares,'listaTemas'=> Tema::orderBy('tema')]);
         }   
 
         public function update(){

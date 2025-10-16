@@ -29,6 +29,9 @@
             <h1><?= APP_NAME ?></h1>
             <h2>Lista de Usuarios</h2>
             <?php if($socios){ ?>
+                <div class="right">
+                    <?= $paginator->stats() ?>
+                </div>
                 <table class="table w100">
                     <tr>
                         <th>DNI</th>
@@ -46,16 +49,17 @@
                         <td><?= $socio->telefono ?></td>
                         <td><?= $socio->email ?></td>
                         <td class="centrado">
-                            <a href='/Socio/show/<?= $libro->id ?>'>Ver</a> -
-                            <a href='/Libro/edit/<?= $libro->id ?>'>Editar</a> -         
-                            <a href='/Libro/delete/<?= $libro->id ?>'>Borrar</a> 
+                            <a href='/Socio/show/<?= $socio->id ?>'>Ver</a> -
+                            <a href='/Socio/edit/<?= $socio->id ?>'>Editar</a> -         
+                            <a href='/Socio/delete/<?= $socio->id ?>'>Borrar</a> 
                         </td>
                     </tr>
                 <?php } ?>
                 </table>
+                <?= $paginator->ellipsisLinks() ?>
             <?php } else { ?>
                 <div class="danger p2">
-                    <p>No hay libros que mostrar.</p>
+                    <p>No hay Socio que mostrar.</p>
                 </div>
             <?php } ?>
             <div class="centred">

@@ -64,6 +64,15 @@
                     <label for="caracteristicas">Características:</label>
                     <input type="text" name="caracteristicas" value="<?= old('caracteristicas') ?>">
                     <br>
+                    <label>Tema</label>
+                    <select name="idtema">
+                        <?php
+                            foreach($listaTemas as $nuevoTema){
+                                echo "<option value'$nuevoTema->id'>$nuevoTema->tema</option>";
+                            }
+                        ?>
+                    </select>
+                    <br>
                     <label for="sinopsis">Sinopsis:</label>
                     <textarea name="sinopsis" class="w50"><?= old('sinopsis') ?></textarea>
                     <div class="centre mt2">

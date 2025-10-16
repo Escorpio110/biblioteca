@@ -62,6 +62,16 @@
                 <label for="caracteristicas">Características:</label>
                 <input type="text" name="caracteristicas" value="<?= old('caracteristicas', $libro->caracteristicas) ?>">
                 <br>
+                <label>Tema</label>
+                <select name="idtema">
+                    <?php
+                        foreach($listaTemas as $nuevoTema){
+                            echo "<option value'$nuevoTema->id'>$nuevoTema->tema</option>";
+                        }
+                    ?>
+                </select>
+                
+                <br>
                 <label for="sinopsis">Sinopsis:</label>
                 <textarea name="sinopsis" class="w50"><?= old('sinopsis', $libro->sinopsis) ?></textarea>
                 <br>
@@ -70,6 +80,42 @@
                     <input class="button" type="reset" name="reset" value="Reset">
                 </div>
             </form>
+            <section>
+                <script>
+                    function confirmar(id) {
+                        if (confirm('Seguro que quieres eliminar?')) {
+                            location.href= '/Ejemplar/destroy'+id
+                        }
+                    }
+                </script>
+                <h2>Ejemplares <?= $libro->titulo ?></h2>
+                <a class="button" href="/ejemplar/create/<?= $libro->id ?>">Nuevo Ejemplar</a>
+                <?php 
+                    if(!$ejemplares){
+                        echo "<div class='warning p2'><p>No hay ejemplares</p></div>";
+                    }else{
+                ?>
+                    
+                    <table class="table w100 centred-block">
+                        <tr>
+                            <th>ID</th><th>Año</th><th>Precio</th><th>Estado</th><th>Operaciones</th>
+                        </tr>
+                        <?php foreach($ejemplares as $ejemplar){ ?>
+                            <tr>
+                                <td><?= $ejemplar->id ?></td>
+                                <td><?= $ejemplar->anyo?></td>
+                                <td><?= $ejemplar->precio?> €</td>
+                                <td><?= $ejemplar->estado?></td>
+                                <td class="centred">
+                                    <?php if(!$ejemplar->hasAny('Prestamo')) { ?>
+                                        <a onclick="confirmar(<?= $ejemplar->id ?>)">Borrar</a>
+                                    <?php }?>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </table>         
+                <?php } ?>
+            </section>
             <section>
                 <script>
                     function confirmar(id) {

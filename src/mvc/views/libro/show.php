@@ -16,6 +16,7 @@
 
     </head>
     <body>
+
         <?= $template->login() ?>
 		<?= $template->menu() ?>
 		<?= $template->header('Lista de libros') ?>
@@ -26,8 +27,11 @@
             $libro->titulo => NULL
         ]) ?>
         <?= $template->messages() ?>
+        
         <main>
+
             <h1><?= APP_NAME ?></h1>
+
             <section>
                 <p><b>ISBN:</b>         <?= $libro->isbn?></p>
                 <p><b>Titulo:</b>       <?= $libro->titulo?></p>
@@ -44,6 +48,7 @@
                 <p><b>Paginas</b><?= $libro->paginas ?? ' -- ' ?></p>
                 <p><b>Características</b> <?= $libro->caracteristicas ?? ' -- ' ?></p>
             </section>
+
             <section>
                 <h2>Sinopsis</h2>
                 <p><?= $libro->sinopsis ? paragraph($libro->sinopsis) : 'SIN DETALLES' ?></p>
@@ -71,6 +76,28 @@
                     </table>         
                 <?php } ?>
             </section>
+
+            <section id="temas">
+                <h2>Temas en <?= $libro->titulo ?></h2>
+                <?php 
+                    if(!$temas){
+                        echo "<div class='warning p2'><p>No hay ejemplares</p></div>";
+                    }else{
+                ?>
+                    <table class="table w100 centred-block">
+                        <tr>
+                            <th>ID</th><th>Tema</th>
+                        </tr>
+                        <?php foreach($temas as $tema){ ?>
+                            <tr>
+                                <td><?= $tema->id ?></td>
+                                <td><a href='/Tema/show/<?= $tema->id ?>'><?= $tema->tema ?></a></td>
+                            </tr>
+                        <?php } ?>
+                    </table>         
+                <?php } ?>
+            </section>
+            
             <div class="centrado">
                 <a class="button" onclick="history.back()">Atras</a>
                 <a class="button" href="/Libro/list">Lista de libros</a>

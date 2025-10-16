@@ -29,6 +29,9 @@
             <h1><?= APP_NAME ?></h1>
             <h2>Lista de Usuarios</h2>
             <?php if($temas){ ?>
+                <div class="right">
+                    <?= $paginator->stats() ?>
+                </div>
                 <table class="table w100">
                     <tr>
                         <th>Tema</th>
@@ -41,13 +44,13 @@
                         <td><?= $tema->descripcion ?></a></td>
                         
                         <td class="centrado">
-                            <a href='/Libro/show/<?= $libro->id ?>'>Ver</a> -
-                            <a href='/Libro/edit/<?= $libro->id ?>'>Editar</a> -         
-                            <a href='/Libro/delete/<?= $libro->id ?>'>Borrar</a> 
+                            <a class="button" href='/Tema/show/<?= $tema->id ?>'>Lista de libros</a>
+                            
                         </td>
                     </tr>
                 <?php } ?>
                 </table>
+                <?= $paginator->ellipsisLinks() ?>
             <?php } else { ?>
                 <div class="danger p2">
                     <p>No hay libros que mostrar.</p>

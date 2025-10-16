@@ -19,18 +19,18 @@
          * @return ViewResponse
          */
         public function list(int $page = 1){
-            /**$limit = RESULTS_PER_PAGE;
-            $total = Socio::total();**/
-            $socios = Socio::all();
+            $limit = RESULTS_PER_PAGE;
+            $total = Socio::total();
+            #$socios = Socio::all();
+                
+            $paginator = new Paginator('/Socio/list', $page, $limit, $total);
 
-            /**$paginator = new Paginator('/Socio/list', $page, $limit, $total);
-
-            $libros = V_libro::orderBy('titulo', 'ASC', $limit, $paginator->getOffset());**/
+            $socios = Socio::orderBy('nombre', 'ASC', $limit, $paginator->getOffset());
 
 
             
             
-            return view('socio/list', ['socios'=>$socios/**,'paginator'=>$paginator**/]);
+            return view('socio/list', ['socios'=>$socios,'paginator'=>$paginator]);
         }
         /**
          * @param int $id

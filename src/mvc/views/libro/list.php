@@ -29,11 +29,15 @@
             <h1><?= APP_NAME ?></h1>
             <h2>Lista de libros</h2>
             <?php if($libros){ ?>
+                <div class="right">
+                    <?= $paginator->stats() ?>
+                </div>
                 <table class="table w100">
                     <tr>
                         <th>ISBN</th>
                         <th>Título</th>
                         <th>Autor</th>
+                        <th>Ejemplares</th>
                         <th class="centrado">Operaciones</th>
                     </tr>
                 <?php foreach($libros as $libro){ ?>
@@ -41,6 +45,7 @@
                         <td><?= $libro->isbn ?></td>
                         <td><a href='/Libro/show/<?= $libro->id ?>'><?= $libro->titulo ?></a></td>
                         <td><?= $libro->autor ?></td>
+                        <td><?= $libro->ejemplares ?></td>
                         <td class="centrado">
                             <a href='/Libro/show/<?= $libro->id ?>'>Ver</a> -
                             <a href='/Libro/edit/<?= $libro->id ?>'>Editar</a> -         
@@ -49,11 +54,13 @@
                     </tr>
                 <?php } ?>
                 </table>
+                <?= $paginator->ellipsisLinks() ?>
             <?php } else { ?>
                 <div class="danger p2">
                     <p>No hay libros que mostrar.</p>
                 </div>
             <?php } ?>
+
             <div class="centred">
                 <a class="button" onclick="history.back()">Atras</a>
             </div>
