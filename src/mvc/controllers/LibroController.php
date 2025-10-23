@@ -19,20 +19,36 @@
          * @return ViewResponse
          */
         public function list(int $page = 1){
+            $filtro = Filter::apply('libros');
+            
             $limit = RESULTS_PER_PAGE;
-            $total = Libro::total();
-            #$libros = Libro::all();
 
-            //$filtro = Filter::apply('libros');
+            if($filtro) {
 
-            $paginator = new Paginator('/Libro/list', $page, $limit, $total);
+                $total = V_libro::filteredResults($filtro);
 
-            $libros = V_libro::orderBy('titulo', 'ASC', $limit, $paginator->getOffset());
+                $paginator = new Paginator('/Libro/list', $page, $limit, $total);
 
-            $ejemplares = Ejemplar::all();
+                $libros = V_libro::filter($filtro, $limit, $paginator->getOffset());  
+
+            } else {
+
+                $total = V_libro::total();
+
+                $paginator = new Paginator('/Libro/list', $page, $limit, $total);
+
+                $libros = V_libro::orderBy('titulo', 'ASC', $limit, $paginator->getOffset());
+                
+            }
+
+            //$ejemplares = Ejemplar::all();
             
             
-            return view('libro/list', ['libros'=>$libros, 'ejemplares'=>$ejemplares, 'paginator'=>$paginator]);
+            return view('libro/list', [
+                'libros'        =>$libros, 
+                //'ejemplares'    =>$ejemplares, 
+                'paginator'     =>$paginator, 
+                'filtro'        =>$filtro]);
         }
         
         /**
@@ -80,10 +96,13 @@
             $libro->paginas             = request()->post('paginas');
             $libro->caracteristicas     = request()->post('caracteristicas');
             $libro->sinopsis            = request()->post('sinopsis');
+
+            $idtema = intval(request()->post('idtema'));
+
             
             try {
                 $libro->save();
-                
+                $libro->addTema($idtema);
                 Session::success('Llibre creat correctament.');
                 return redirect('/Libro/show/'.$libro->id);
 
@@ -112,7 +131,15 @@
 
             $ejemplares = $libro->hasMany('Ejemplar');
 
-            return view('libro/edit', ['libro'=>$libro, 'ejemplares'=>$ejemplares,'listaTemas'=> Tema::orderBy('tema')]);
+            $temas = $libro->belongsToMany('Tema', 'temas_libros');
+
+            $listaTemas = Tema::orderBy('tema');
+
+            return view('libro/edit', [
+                'libro'=>$libro, 
+                'ejemplares'=>$ejemplares,
+                'temas' => $temas,
+                'listaTemas'=> $listaTemas]);
         }   
 
         public function update(){
@@ -186,6 +213,14 @@
                 }
 
                 return redirect("/Libro/delete/$id");
+            }
+        }
+
+        public function jsonimport(){
+            Auth::oneRole(['ROLE_LIBRARIAN', 'ROLE_ADMIN']);
+        
+            if (!Upload::arrive('fichero')) {
+                
             }
         }
 

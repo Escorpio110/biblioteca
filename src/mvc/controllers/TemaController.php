@@ -19,18 +19,31 @@
          * @return ViewResponse
          */
         public function list(int $page = 1){
+
+            $filtro = Filter::apply('tema');
+
             $limit = RESULTS_PER_PAGE;
-            $total = Tema::total();
-            #$temas = Tema::all();
 
-            $paginator = new Paginator('/Tema/list', $page, $limit, $total);
-
-            $temas = Tema::orderBy('Tema', 'ASC', $limit, $paginator->getOffset());
 
 
             
-            
-            return view('tema/list', ['temas'=>$temas,'paginator'=>$paginator]);
+            if($filtro) {
+
+                $total = Tema::filteredResults($filtro);
+
+                $paginator = new Paginator('/Tema/list', $page, $limit, $total);
+
+                $temas = Tema::filter($filtro, $limit, $paginator->getOffset());  
+
+            } else {
+
+                $total = Tema::total();
+
+                $paginator = new Paginator('/Tema/list', $page, $limit, $total);
+
+                $temas = Tema::orderBy('tema', 'ASC', $limit, $paginator->getOffset());
+            }
+            return view('tema/list', ['temas'=>$temas,'paginator'=>$paginator, 'filtro' => $filtro]);
         }
 
         /**
@@ -45,5 +58,15 @@
            
 
             return view('tema/show', ['tema'=>$tema, 'libros'=>$libros]);
+        }
+
+        /**
+         * Muestra el formulario para editar un libro.
+         * 
+         * @return ViewResponse
+         */
+        public function create(){
+
+            return view('tema/create', ['listaTemas'=> Tema::orderBy('tema')]);
         }
     }

@@ -8,6 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Lista de libros en <?= APP_NAME ?>">
         <meta name="author" content="Robert Sallent">
+        <script src="/js/Preview.js"></script>
+        <script src="/js/BigPicture.js"></script>
 
         <link rel="shortcut icon" href="/favicon.ico" type="image/png">
         <!--<link rel="icon" href="https://i.redd.it/cfd2cg8xib4a1.jpg">-->
@@ -28,7 +30,7 @@
         <main>
             <h1><?= APP_NAME ?></h1>
             <h2>Nuevo libro</h2>
-            <form method="POST" enctype="multipart/form-data" action="/Libro/store">
+            <form method="POST" enctype="multipart/form-data" action="/Libro/store" class="flex-container gap2">
                 <div class="flex2">
                     <label for="isbn">ISBN:</label>
                     <input type="text" name="isbn" value="<?= old('isbn') ?>">
@@ -41,6 +43,9 @@
                     <br>
                     <label for="autor">Autor:</label>
                     <input type="text" name="autor" value="<?= old('autor') ?>">
+                    <br>
+                    <label>Portada</label>
+                    <input type="file" name="portada" accept="image/*" id="file-with-preview">
                     <br>
                     <label for="idioma">Idioma:</label>
                     <select name="idioma">
@@ -80,9 +85,13 @@
                         <input type="reset" class="button" value="Reset">
                     </div>
                 </div>
+                <figure class="flex1 centrado">
+                    <img src="<?= BOOK_IMAGE_FOLDER.'/'.DEFAULT_BOOK_IMAGE?>"
+                         class="cover enlarge-image" id="preview-image" alt="Previsualicion de la portada">
+                </figure>
             </form>
             <div class="centrado my2">
-                <a class="button" onclick="history.back()">Atras</a>
+                <a class="button" onclick="history.back()">Atras</a>                
                 <a class="button" href="/Libro/list">Lista de libros</a>
             </div>
         </main>

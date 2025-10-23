@@ -272,6 +272,12 @@ define('UPLOAD_FOLDER', '../storage');
 // tamaño máximo para los ficheros subidos en bytes (0 sin límite)
 define('UPLOAD_MAX_SIZE', 0);          
 
+define('BOOK_IMAGE_FOLDER', '/images/books');
+
+define('DEFAULT_BOOK_IMAGE', 'cover.png');
+
+
+
 
 
 /* -------------------------------------------------------------

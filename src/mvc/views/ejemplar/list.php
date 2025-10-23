@@ -31,24 +31,32 @@
             <p>
                 Estas apunto de crear un ejemplar de <b><?= $libro ->$id ?></b>
             </p>
-            <form method="POST" action="/Ejemplar/store">
-                <input type="hidden" name="idlibro" value="<?= $libro -> $id?>">
-                
-                
-                    <label>Año:</label>
-                    <input type="number" name="anyo" value="<?= old('anyo') ?>">
-                    <br>
-                    
-                    <label>Precio:</label>
-                    <input type="number" name="precio" step="0.01" value="<?= old('precio') ?>">
-                    <br>
-                    <label>Características:</label>
-                    <input type="text" name="estado" value="<?= old('estado') ?>">
-                    <br>
-                    <input type="submit" class="button" name="guardar" value="Guardar">
-    
-                </div>
-            </form>
+            <table class="table w100">
+                    <tr>
+                        <th>Portada</th>
+                        <th>ISBN</th>
+                        <th>Título</th>
+                        <th>Autor</th>
+                        <th>Limite</th>
+                        <th>Devolucion</th>
+                        <th class="centrado">Operaciones</th>
+                    </tr>
+                <?php foreach($prestamos as $prestamo){ ?>
+                    <tr>
+                        <td class="centrado"><?= $prestamo->id ?></td>
+                        <td><a href='/Socio/show/<?= $socio->id ?>'><?= $prestamo->nombre ?></a></td>
+                        <td><?= $prestamo->idejemplar ?></td>
+                        <td><?= $prestamo->titulo ?></td>
+                        <td><?= $prestamo->limite ?></td>
+                        <td><?= $prestamo->devolucion ?></td>
+                        <td class="centrado">
+                            <a href='/Libro/show/<?= $libro->id ?>'>Ver</a> -
+                            <a href='/Libro/edit/<?= $libro->id ?>'>Editar</a> -         
+                            <a href='/Libro/delete/<?= $libro->id ?>'>Borrar</a> 
+                        </td>
+                    </tr>
+                <?php } ?>
+                </table>
             <div class="centrado my2">
                 <a class="button" onclick="history.back()">Atras</a>
                 <a class="button" href="/Libro/list">Lista de libros</a>

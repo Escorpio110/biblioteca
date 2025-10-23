@@ -29,11 +29,45 @@
             <h1><?= APP_NAME ?></h1>
             <h2>Lista de libros</h2>
             <?php if($libros){ ?>
+                <?php
+                    if ($filtro) {
+
+                        echo $template->removeFilterForm($filtro, '/Libro/list');
+                            
+                    }else{
+
+                        echo $template->filterForm(
+
+                            [
+                                'TÍtulo'        => 'titulo',
+                                'Editorial'     => 'editorial',
+                                'Autor'         => 'autor',
+                                'ISBN'          => 'isbn'
+                               
+                            ],
+                            
+                            [
+                                'TÍtulo'        => 'titulo',
+                                'Editorial'     => 'editorial',
+                                'Autor'         => 'autor',
+                                'ISBN'          => 'isbn'
+                                
+                            ],
+
+                            'TÍtulo',
+
+                            'TÍtulo'
+
+                        );
+                    }
+                ?>
+                
                 <div class="right">
                     <?= $paginator->stats() ?>
                 </div>
                 <table class="table w100">
                     <tr>
+                        <th>Portada</th>
                         <th>ISBN</th>
                         <th>Título</th>
                         <th>Autor</th>
@@ -42,6 +76,13 @@
                     </tr>
                 <?php foreach($libros as $libro){ ?>
                     <tr>
+                        <td class="centrado">
+                            <a href='/Libro/show/<?= $libro->id ?>'>
+                                <img src="<?=BOOK_IMAGE_FOLDER.'/'.($libro->portada ?? DEFAULT_BOOK_IMAGE)?>"
+                                     class="table-image" alt="Portada de <?= $libro->titulo ?>" 
+                                     title="Portada de <?= $libro->titulo ?>">
+                            </a>
+                        </td>
                         <td><?= $libro->isbn ?></td>
                         <td><a href='/Libro/show/<?= $libro->id ?>'><?= $libro->titulo ?></a></td>
                         <td><?= $libro->autor ?></td>

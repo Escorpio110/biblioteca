@@ -3,7 +3,7 @@
             /**
              * @return ViewResponse
              */
-            public function create(int $idlibro =0){
+            public function create(int $idlibro = 0){
 
                 $libro = Libro::findOrFail($idlibro);
 
@@ -44,5 +44,16 @@
                 }
                 
             }
+            public function prestamo(){
+
+                $prestamos = V_prestamo::orderBy('titulo');
+                
+                
+                return view('ejemplar/list', [
+                    'prestamos'        =>$prestamos,
+                    
+                    ]);
+                    
+                }
 
         }

@@ -19,18 +19,30 @@
          * @return ViewResponse
          */
         public function list(int $page = 1){
+
+            $filtro = Filter::apply('socio');
+
             $limit = RESULTS_PER_PAGE;
-            $total = Socio::total();
-            #$socios = Socio::all();
+
+            if($filtro) {
+
+                $total = Socio::filteredResults($filtro);
+
+                $paginator = new Paginator('/Socio/list', $page, $limit, $total);
+
+                $socios = Socio::filter($filtro, $limit, $paginator->getOffset());  
+
+            } else {
+
+                $total = Socio::total();
+
+                $paginator = new Paginator('/Socio/list', $page, $limit, $total);
+
+                $socios = Socio::orderBy('nombre', 'ASC', $limit, $paginator->getOffset());
                 
-            $paginator = new Paginator('/Socio/list', $page, $limit, $total);
-
-            $socios = Socio::orderBy('nombre', 'ASC', $limit, $paginator->getOffset());
-
-
-            
-            
-            return view('socio/list', ['socios'=>$socios,'paginator'=>$paginator]);
+            }
+                    
+            return view('socio/list', ['socios'=>$socios,'paginator'=>$paginator, 'filro' =>$filtro]);
         }
         /**
          * @param int $id

@@ -8,6 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Lista de libros en <?= APP_NAME ?>">
         <meta name="author" content="Robert Sallent">
+       
+        <script src="/js/BigPicture.js"></script>
 
         <link rel="shortcut icon" href="/favicon.ico" type="image/png">
         <!--<link rel="icon" href="https://i.redd.it/cfd2cg8xib4a1.jpg">-->
@@ -32,21 +34,32 @@
 
             <h1><?= APP_NAME ?></h1>
 
-            <section>
-                <p><b>ISBN:</b>         <?= $libro->isbn?></p>
-                <p><b>Titulo:</b>       <?= $libro->titulo?></p>
-                <p><b>Autor:</b>        <?= $libro->autor?></p>
-                <p><b>Idioma</b>        <?= $libro->idioma?></p>
-                <p><b>Editorial:</b>    <?= $libro->editorial?></p>
-                <p><b>Edición:</b>      <?= $libro->edicion?></p>
-                
 
-                <p><b>Edad recomendada:</b>
-                <?= $libro->edadrecomendada ?? 'TP' ?></p>
-                
-                <p><b>Año</b><?= $libro->anyo ?? ' -- ' ?></p>
-                <p><b>Paginas</b><?= $libro->paginas ?? ' -- ' ?></p>
-                <p><b>Características</b> <?= $libro->caracteristicas ?? ' -- ' ?></p>
+            <section id="detalles " class="flex-container gap2">
+                <div class="flex2">
+                    <h2><?= $libro->titulo ?></h2>
+                    <p><b>ISBN:</b>         <?= $libro->isbn?></p>
+                    <p><b>Titulo:</b>       <?= $libro->titulo?></p>
+                    <p><b>Autor:</b>        <?= $libro->autor?></p>
+                    <p><b>Idioma</b>        <?= $libro->idioma?></p>
+                    <p><b>Editorial:</b>    <?= $libro->editorial?></p>
+                    <p><b>Edición:</b>      <?= $libro->edicion?></p>
+                    
+
+                    <p><b>Edad recomendada:</b>
+                    <?= $libro->edadrecomendada ?? 'TP' ?></p>
+                    
+                    <p><b>Año</b><?= $libro->anyo ?? ' -- ' ?></p>
+                    <p><b>Paginas</b><?= $libro->paginas ?? ' -- ' ?></p>
+                    <p><b>Características</b> <?= $libro->caracteristicas ?? ' -- ' ?></p>
+                </div>
+
+                <figure class="flex1 centrado p2">
+                    <img src="<?=BOOK_IMAGE_FOLDER.'/'.($libro->portada ?? DEFAULT_BOOK_IMAGE)?>"
+                         class="cover enlarge-image" alt="Portada de <?= $libro->titulo ?>" 
+                         title="Portada de <?= $libro->titulo ?>">
+                         <figcaption>Portada de <?= "$libro->titulo, de $libro->autor" ?></figcaption>
+                </figure>     
             </section>
 
             <section>

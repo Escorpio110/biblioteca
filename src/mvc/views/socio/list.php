@@ -29,6 +29,41 @@
             <h1><?= APP_NAME ?></h1>
             <h2>Lista de Usuarios</h2>
             <?php if($socios){ ?>
+
+                <?php
+                    if ($filtro) {
+
+                        echo $template->removeFilterForm($filtro, '/Socio/list');
+                            
+                    }else{
+
+                        echo $template->filterForm(
+
+                            [
+                                
+                                'Nombre'     => 'nombre',
+                                'Poblacion'         => 'poblacion',
+                                'email'          => 'email'
+                               
+                            ],
+                            
+                            [
+                        
+                                'Nombre'     => 'nombre',
+                                'Poblacion'         => 'poblacion',
+                                'email'          => 'email'
+                                
+                                
+                            ],
+
+                            'Nombre',
+
+                            'Nombre'
+
+                        );
+                    }
+                ?>
+
                 <div class="right">
                     <?= $paginator->stats() ?>
                 </div>

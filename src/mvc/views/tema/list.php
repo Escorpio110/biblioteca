@@ -29,6 +29,35 @@
             <h1><?= APP_NAME ?></h1>
             <h2>Lista de Usuarios</h2>
             <?php if($temas){ ?>
+                <?php
+                    if ($filtro) {
+
+                        echo $template->removeFilterForm($filtro, '/Tema/list');
+                            
+                    }else{
+
+                        echo $template->filterForm(
+
+                            [
+                                'Tema'        => 'tema',
+                                'Descripcion'     => 'descripcion'
+                                
+                               
+                            ],
+                            
+                            [
+                                'Tema'        => 'tema',
+                                'Descripcion'     => 'descripcion'
+                                
+                            ],
+
+                            'Tema',
+
+                            'Tema'
+
+                        );
+                    }
+                ?>
                 <div class="right">
                     <?= $paginator->stats() ?>
                 </div>

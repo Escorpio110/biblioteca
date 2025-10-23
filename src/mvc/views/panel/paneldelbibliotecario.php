@@ -22,7 +22,7 @@
 		<?= $template->messages() ?>
 		<?= $template->acceptCookies() ?>
         <?= $template->breadcrumbs([
-            'Contacto' => null
+            'Panel del bibliotecario' => null
         ]) ?>
         <?= $template->messages() ?>
         <main>
