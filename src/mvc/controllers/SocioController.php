@@ -57,4 +57,13 @@
 
             return view('socio/show', ['socio'=>$socio]);
         }
+        /**
+         * Muestra el formulario para editar un libro.
+         * 
+         * @return ViewResponse
+         */
+        public function create(){
+
+            return view('Socio/create', ['listaTemas'=> Tema::orderBy('tema')]);
+        }
     }

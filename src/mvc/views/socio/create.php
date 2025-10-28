@@ -3,10 +3,10 @@
 
     <head>
         <meta charset="UTF-8">
-        <title>Lista de libros - <?= APP_NAME ?></title> 
+        <title>Nuevo Socio de - <?= APP_NAME ?></title> 
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Lista de libros en <?= APP_NAME ?>">
+        <meta name="description" content="Nuevo Socio de <?= APP_NAME ?>">
         <meta name="author" content="Robert Sallent">
 
         <link rel="shortcut icon" href="/favicon.ico" type="image/png">
@@ -18,54 +18,33 @@
     <body>
         <?= $template->login() ?>
 		<?= $template->menu() ?>
-		<?= $template->header('Lista de libros') ?>
+		<?= $template->header('Nuevo Socio') ?>
 		<?= $template->messages() ?>
 		<?= $template->acceptCookies() ?>
         <?= $template->breadcrumbs([
-            'Nuevo libro' => null
+            'Nuevo socio' => null
         ]) ?>
         <?= $template->messages() ?>
         <main>
             <h1><?= APP_NAME ?></h1>
-            <h2>Nuevo libro</h2>
-            <form method="POST" enctype="multipart/form-data" action="/Libro/store">
+            <h2>Nuevo Socio</h2>
+            <form method="POST" enctype="multipart/form-data" action="/Socio/store">
                 <div class="flex2">
-                    <label for="isbn">ISBN:</label>
-                    <input type="text" name="isbn" value="<?= old('isbn') ?>">
+                    <label for="dni">DNI:</label>
+                    <input type="text" name="dni" value="<?= old('dni') ?>">
                     <br>
-                    <label for="titulo">Título:</label>
-                    <input type="text" name="titulo" value="<?= old('titulo') ?>">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" name="nombre" value="<?= old('nombre') ?>">
                     <br>
-                    <label for="editorial">Editorial:</label>
-                    <input type="text" name="editorial" value="<?= old('editorial') ?>">
+                    <label for="poblacion">Poblacion:</label>
+                    <input type="text" name="poblacion" value="<?= old('poblacion') ?>">
                     <br>
-                    <label for="autor">Autor:</label>
-                    <input type="text" name="autor" value="<?= old('autor') ?>">
+                    <label for="telefono">Telefono:</label>
+                    <input type="number" name="telefono" value="<?= old('telefono') ?>">
                     <br>
-                    <label for="idioma">Idioma:</label>
-                    <select name="idioma">
-                        <option value="Español" <?= oldSelected('idioma', 'Castellano') ?>>Castellano</option>
-                        <option value="Catalán" <?= oldSelected('idioma', 'Catalán') ?>>Catalán</option>                        
-                        <option value="Otros" <?= oldSelected('idioma', 'Otros') ?>>Otros</option>
-                    </select>
+                    <label>Email:</label>
+                    <input type="email" name="email" required value="<?= old('email') ?>">
                     <br>
-                    <label for="edicion">Edición:</label>
-                    <input type="text" name="edicion" value="<?= old('edicion') ?>">
-                    <br>
-                    <label for="anyo">Año:</label>
-                    <input type="number" name="anyo" value="<?= old('anyo') ?>">
-                    <br>
-                    <label for="edadrecomendada">Edad recomendada:</label>
-                    <input type="text" name="edadrecomendada" value="<?= old('edadrecomendada') ?>">
-                    <br>
-                    <label for="paginas">Páginas:</label>
-                    <input type="number" name="paginas" value="<?= old('paginas') ?>">
-                    <br>
-                    <label for="caracteristicas">Características:</label>
-                    <input type="text" name="caracteristicas" value="<?= old('caracteristicas') ?>">
-                    <br>
-                    <label for="sinopsis">Sinopsis:</label>
-                    <textarea name="sinopsis" class="w50"><?= old('sinopsis') ?></textarea>
                     <div class="centre mt2">
                         <input type="submit" class="button" name="guardar" value="Giardar">
                         <input type="reset" class="button" value="Reset">

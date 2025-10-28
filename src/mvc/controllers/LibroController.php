@@ -81,33 +81,18 @@
             if(!request()->has('guardar')){
 
                 throw new FormException('No s\'han rebut dades del formulari.');
-            }   
-
-            $libro = new Libro();
-
-            $libro->isbn                = request()->post('isbn');
-            $libro->titulo              = request()->post('titulo');            
-            $libro->editorial           = request()->post('editorial');
-            $libro->autor               = request()->post('autor');
-            $libro->idioma              = request()->post('idioma');
-            $libro->edicion             = request()->post('edicion');
-            $libro->anyo                = request()->post('anyo');
-            $libro->edadrecomendada     = request()->post('edadrecomendada');
-            $libro->paginas             = request()->post('paginas');
-            $libro->caracteristicas     = request()->post('caracteristicas');
-            $libro->sinopsis            = request()->post('sinopsis');
-
-            $idtema = intval(request()->post('idtema'));
-
-            
-            try {
-                $libro->save();
-                $libro->addTema($idtema);
+            }try {
+                $libro = Libro::create(request()->posts());
                 Session::success('Llibre creat correctament.');
                 return redirect('/Libro/show/'.$libro->id);
-
             } catch (SQLException $e){
-                Session::error("No s'ha pogut crear el llibre.");
+                
+                $mensaje="No s'ha pogut crear el llibre.";
+                
+                if (str_contains($e->errorMessage(), 'Duplicate entry')) {
+                    $mensaje .="<br>Yaexiste un libro con ese <b>ISBN</b>.";
+                }
+                Session::error($mensaje);
 
                 if(DEBUG){
                     throw new SQLException($e->getMessage());
@@ -115,7 +100,12 @@
 
                 return redirect('/Libro/create');
                 
-            }
+            }   
+
+            
+
+            
+            
             
         }
 
