@@ -22,36 +22,39 @@
 		<?= $template->messages() ?>
 		<?= $template->acceptCookies() ?>
         <?= $template->breadcrumbs([
-            'Nuevo libro' => null
+            'Libros' => null
         ]) ?>
         <?= $template->messages() ?>
         <main>
             <h1><?= APP_NAME ?></h1>
-            <h2>Nuevo Ejemplar</h2>
-            <p>
-                Estas apunto de crear un ejemplar de <b><?= $libro ->$id ?></b>
-            </p>
-            <form method="POST" action="/Ejemplar/store">
-                <input type="hidden" name="idlibro" value="<?= $libro -> $id?>">
+            <h2>Lista de libros</h2>
+            <?php if($places){?>
                 
                 
-                    <label>Año:</label>
-                    <input type="number" name="anyo" value="<?= old('anyo') ?>">
-                    <br>
+                <script src="/js/Modal.js"></script>  
+                <?php foreach($places as $place){ ?>
                     
-                    <label>Precio:</label>
-                    <input type="number" name="precio" step="0.01" value="<?= old('precio') ?>">
-                    <br>
-                    <label>Características:</label>
-                    <input type="text" name="estado" value="<?= old('estado') ?>">
-                    <br>
-                    <input type="submit" class="button" name="guardar" value="Guardar">
-    
+                            <figure class="centrado">
+                                <a href='/Place/show/<?= $place->id ?>'>
+                                    <img src="<?=BOOK_IMAGE_FOLDER.'/'.($place->mainpicture ?? DEFAULT_BOOK_IMAGE)?>"
+                                         class="table-image" alt="Portada de <?= $place->name ?>" 
+                                         title="Portada de <?= $place->name ?>">
+                                </a>
+                            </figure>
+                            
+                        
+                    
+                <?php } ?>
+                </table>
+                
+            <?php } else { ?>
+                <div class="danger p2">
+                    <p>No hay libros que mostrar.</p>
                 </div>
-            </form>
-            <div class="centrado my2">
+            <?php } ?>
+
+            <div class="centred">
                 <a class="button" onclick="history.back()">Atras</a>
-                <a class="button" href="/Libro/list">Lista de libros</a>
             </div>
         </main>
         <?= $template->footer() ?>

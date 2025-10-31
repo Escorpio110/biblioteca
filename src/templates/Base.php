@@ -166,7 +166,7 @@ class Base implements TemplateInterface{
                 <div class='flex-container gap1'>
                     <figure class='flex1 perfect-centered'>
                         <a href='/'>
-                            <img alt='FastLight Logo' src='/images/logos/log.png'>
+                            <img alt='FastLight Logo' src='/images/logos/paisage.png'>
                         </a>
                     </figure>
                     <hgroup class='flex7'>
@@ -210,7 +210,7 @@ class Base implements TemplateInterface{
         
         $html .= "\t\t<li><a href='/'>Inicio</a></li>\n";
 
-        $html .= "\t\t<li><a href='/Libro'>Libros</a></li>\n";
+        $html .= "\t\t<li><a href='/Place'>Anuncios</a></li>\n";
         
         $html .= "\t\t<li><a href='/Panel/paneldelbibliotecario'>Panel del Bibliotecario</a></li>\n";
         

@@ -67,7 +67,7 @@ define('AUTOLOAD_DIRECTORIES',  [
  * APLICACIÓN
  * -------------------------------------------------------------*/
 
-define('APP_NAME', 'BibliotecaCIFO'); // Título de la aplicación.
+define('APP_NAME', 'CIFOPLACES'); // Título de la aplicación.
 define('APP_TYPE', 'WEB');       // Tipo de aplicación: WEB o API.              
 
 define('LANGUAGE_CODE', 'es');   // código de idioma (para poner como atributo del elemento html en las vistas)
@@ -137,7 +137,7 @@ define('DB_HOST','localhost');          // Host (configuración para Docker)
 
 define('DB_USER','root'); // Usuario para identificarse con la BDD.
 define('DB_PASS','root'); // Password para identificarse con la BDD.
-define('DB_NAME','biblioteca');      // Nombre de la base de datos.
+define('DB_NAME','cifoplaces');      // Nombre de la base de datos.
 define('DB_PORT',  3306);           // Puerto.
 define('DB_CHARSET','utf8');        // Codificación de caracteres para la conexión.
 

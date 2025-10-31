@@ -2,7 +2,7 @@
     /**
      * @author Robert Sallent 
      */
-    class LibroController extends Controller{
+    class PlaceController extends Controller{
         /**
          * Muestra la lista de libros.
          * 
@@ -19,36 +19,15 @@
          * @return ViewResponse
          */
         public function list(int $page = 1){
-            $filtro = Filter::apply('libros');
-            
-            $limit = RESULTS_PER_PAGE;
-
-            if($filtro) {
-
-                $total = V_libro::filteredResults($filtro);
-
-                $paginator = new Paginator('/Libro/list', $page, $limit, $total);
-
-                $libros = V_libro::filter($filtro, $limit, $paginator->getOffset());  
-
-            } else {
-
-                $total = V_libro::total();
-
-                $paginator = new Paginator('/Libro/list', $page, $limit, $total);
-
-                $libros = V_libro::orderBy('titulo', 'ASC', $limit, $paginator->getOffset());
-                
-            }
+            $places=Place::all();
 
             //$ejemplares = Ejemplar::all();
             
             
-            return view('libro/list', [
-                'libros'        =>$libros, 
+            return view('place/list', [
+                'places'        =>$places 
                 //'ejemplares'    =>$ejemplares, 
-                'paginator'     =>$paginator, 
-                'filtro'        =>$filtro]);
+                ]);
         }
         
         /**
